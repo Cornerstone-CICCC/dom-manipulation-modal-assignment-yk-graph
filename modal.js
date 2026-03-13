@@ -1,9 +1,34 @@
-console.log("here");
+const btn = document.getElementById('openModal')
+const modal = document.getElementById('modal')
 
-// select button element
+const AUTO_CLOSE_SECONDS = 10
+let autoCloseTimer = null
 
-// add event listener on click to button
-// remove class invisible from div modal
+function openModal() {
+  modal.classList.add('opacity-1')
+  modal.classList.remove('opacity-0', 'pointer-events-none')
 
-// add event listener on key press Escape
-// add class invisible to div modal
+  autoCloseTimer = setTimeout(() => {
+    closeModal()
+  }, AUTO_CLOSE_SECONDS * 1000)
+}
+
+function closeModal() {
+  modal.classList.add('opacity-0', 'pointer-events-none')
+  modal.classList.remove('opacity-1')
+
+  if (autoCloseTimer) {
+    clearTimeout(autoCloseTimer)
+    autoCloseTimer = null
+  }
+}
+
+btn.addEventListener('click', () => {
+  openModal()
+})
+
+document.addEventListener('keyup', (event) => {
+  if (event.key === 'Escape') {
+    closeModal()
+  }
+})
