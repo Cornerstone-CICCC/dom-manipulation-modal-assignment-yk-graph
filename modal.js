@@ -5,8 +5,7 @@ const AUTO_CLOSE_SECONDS = 10
 let autoCloseTimer = null
 
 function openModal() {
-  modal.classList.add('opacity-1')
-  modal.classList.remove('opacity-0', 'pointer-events-none')
+  modal.classList.remove('invisible')
 
   autoCloseTimer = setTimeout(() => {
     closeModal()
@@ -14,8 +13,7 @@ function openModal() {
 }
 
 function closeModal() {
-  modal.classList.add('opacity-0', 'pointer-events-none')
-  modal.classList.remove('opacity-1')
+  modal.classList.add('invisible')
 
   if (autoCloseTimer) {
     clearTimeout(autoCloseTimer)
